@@ -105,7 +105,7 @@ if sys.platform.startswith('win'):
 class TPOTBase(BaseEstimator):
     """Automatically creates and optimizes machine learning pipelines using GP."""
 
-    def __init__(self, train_progress, train_total, model_id, save_model_info, generations=100, population_size=100, offspring_size=None,
+    def __init__(self, train_progress, train_total, model_id, generations=100, population_size=100, offspring_size=None,
                  mutation_rate=0.9, crossover_rate=0.1,
                  scoring=None, cv=5, subsample=1.0, n_jobs=1,
                  max_time_mins=None, max_eval_time_mins=5,
@@ -1550,7 +1550,6 @@ class TPOTBase(BaseEstimator):
                 
                 if self.model_id in model_stop and self._pbar.n >= 110:
                     print('INTENTIONAL STOP TRAINING')
-                    save_model_info()
                     raise
 
     @_pre_test
