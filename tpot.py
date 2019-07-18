@@ -40,7 +40,7 @@ class TPOTClassifier(TPOTBase):
 class TPOTRegressor(TPOTBase):
     """TPOT estimator for regression problems."""
 
-    scoring_function = 'neg_mean_squared_error'  # Regression scoring
+    scoring_function = 'r2'  # Regression scoring
     default_config_dict = regressor_config_dict  # Regression dictionary
     classification = False
     regression = True

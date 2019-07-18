@@ -35,6 +35,7 @@ from multiprocessing import cpu_count
 import os
 import re
 import errno
+import ast
 
 from tempfile import mkdtemp
 from shutil import rmtree
@@ -76,8 +77,6 @@ with warnings.catch_warnings():
     warnings.simplefilter('ignore')
     from tqdm.autonotebook import tqdm
 import StringIO
-
-from settings import model_stop
 
 # hot patch for Windows: solve the problem of crashing python after Ctrl + C in Windows OS
 # https://github.com/ContinuumIO/anaconda-issues/issues/905
@@ -1554,8 +1553,15 @@ class TPOTBase(BaseEstimator):
                 self._pbar.update(pbar_num)
                 self.train_progress(pbar_num)
                 
-                if self.model_id in model_stop and self._pbar.n >= 110:
-                    print('INTENTIONAL STOP TRAINING')
+                model_stop = False
+                try:
+                    with open('temp/model_stop/{}.txt'.format(self.model_id), 'r') as handle:
+                        ast.literal_eval(handle.read())
+                    model_stop = True
+                except Exception as e:
+                    pass
+
+                if model_stop == True and self._pbar.n >= 110:
                     raise
 
     @_pre_test
