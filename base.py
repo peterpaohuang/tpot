@@ -1553,6 +1553,10 @@ class TPOTBase(BaseEstimator):
                 self._pbar.update(pbar_num)
                 self.train_progress(pbar_num)
                 
+                # if self._pbar.n >= 20:
+                #     print("THERE WAS A BIG FUCKING ERROR")
+                #     raise
+
                 model_stop = False
                 try:
                     with open('temp/model_stop/{}.txt'.format(self.model_id), 'r') as handle:
