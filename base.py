@@ -1553,7 +1553,7 @@ class TPOTBase(BaseEstimator):
                 self._pbar.update(pbar_num)
                 self.train_progress(pbar_num)
                 
-                # if self._pbar.n >= 20:
+                # if self._pbar.n >= 30:
                 #     print("THERE WAS A BIG FUCKING ERROR")
                 #     raise
 
