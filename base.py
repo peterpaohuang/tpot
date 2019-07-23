@@ -1328,7 +1328,6 @@ class TPOTBase(BaseEstimator):
         # update pbar for valid individuals (with fitness values)
         if self.verbosity > 0:
             self._pbar.update(len(population)-len(individuals))
-            self.train_progress(len(population)-len(individuals))
 
         operator_counts, eval_individuals_str, sklearn_pipeline_list, stats_dicts = self._preprocess_individuals(individuals)
 
