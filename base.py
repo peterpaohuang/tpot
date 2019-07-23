@@ -1551,7 +1551,8 @@ class TPOTBase(BaseEstimator):
                 self._pbar.write(pbar_msg, file=self._file)
             if not self._pbar.disable:
                 self._pbar.update(pbar_num)
-                self.train_progress(pbar_num)
+                if pbar_num == 1 and pbar_msg == None:
+                    self.train_progress(pbar_num)
                 
                 # if self._pbar.n >= 30:
                 #     print("THERE WAS A BIG FUCKING ERROR")
